@@ -1,0 +1,16 @@
+cat h.txt | ggrep -P '\d{7,7} $\d+\.\d+ .' | head
+cat xab | grep 'A\.'
+cat xab | grep -A1 'A\.'
+cat xab | grep -A1 'A\.' | grep -o '^[0-9]\{7,7\}'
+
+
+for i in cat head -n1 <(grep 'A\.' <(clear;cat xa$i | grep -A1 'A\.'))
+cat xad | grep '^[0-9]\{7,\}' xad | ggrep -P '$\d+\.\d+' | head -n1 | ggrep -o -P '[a-zA-Z]+.*'
+head -n1 <(grep 'A\.' <(clear;cat xa$i | grep -A1 'A\.'))
+for i in {a..z}; do grep $PN xaz | ggrep -P '$\d+\.\d+' | head -n1 | ggrep -o -P '[a-zA-Z]+.*'; done
+
+for i in {a..z}; 
+do
+PN=head -n1 <(grep 'A\.' <(clear;cat xa$i | grep -A1 'A\.'))
+
+ grep '^[0-9]\{7,\}' xaz | ggrep -P '$\d+\.\d+' | head -n1 | ggrep -o -P '[a-zA-Z]+.*'; done
