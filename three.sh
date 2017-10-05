@@ -18,19 +18,19 @@
 #===============================================================================
 
 set -o nounset                              # Treat unset variables as an error
-   BROAD=$(grep '[A-Z]\.' b.txt -A2 -B2)
+   BROAD=$(grep '[A-Z]\.' b.txt -A2 -B9)
    #LIST=$(grep '[A-Z]\.' b.txt -A2 -B2 | grep -o '^[0-9]\{7,8\}')
    #LIST=$(grep '[A-Z]\.' b.txt -A2 -B2 | grep -o '^[0-9]\{7,8\}' | sort | uniq)
-   LIST=$(grep '[A-Z]\.' h.txt -A2 -B2 | grep -o '^[0-9]\{7,8\}' | sort | uniq | tail -n740)
+   LIST=$(grep '[A-Z]\.' b.txt -A2 -B2 | grep -o '^[0-9]\{7,8\}' | sort | uniq | tail -n740)
 
    for n in $(cat <(echo $LIST) )
    do
    #PN=$( echo $BROAD |  grep -o '^[0-9]\{7,8\}' )
    #PN=$(head -n1 <(grep -o '^[0-9]\{7,8\}' b.txt))
    #head -n1 <(grep 'A\.' <(clear;cat xa$ibk | grep -A1 'A\.'))) ;
-   NAME=$( grep "$n" h.txt -A2 -B2 |  grep '[A-Z]\.'  | grep '[A-Z]\. [A-Z -]\+[a-z]' -o  | gsed 's/  //g' | gsed 's/A\. //' | cut -d' ' -f1-4 | head -n1 | sed 's/^[A-Z]\. //' | sed 's/[A-Z][a-z]//')
-   HANDLE=$( grep "$n" h.txt -A2 -B2 | grep '[A-Z]\.'  | grep '[A-Z]\. [A-Z -]\+[a-z]' -o  | gsed 's/  //g' | gsed 's/A\. //' | cut -d' ' -f1-4 | head -n1 | sed 's/^[A-Z]\. //' | tr '[A-Z]' '[a-z]' | sed 's/ /-/g' | sed "s/$/-${n}/"| sed 's/[A-Z][a-z]//' )
-   DESCRIPTION=$( grep "$n" b.txt  -B1 | grep '[A-E]\.' | sed 's/^[A-Z]\. //' | gsed 's/^[A-Z ]\+\([A-Z][a-z]\)/\1/' | sed 's/"//g')
+   NAME=$( grep "$n" b.txt -A2 -B9 |  grep '[A-Z]\.'  | grep '[A-Z]\. [A-Z -]\+[a-z]' -o  | gsed 's/  //g' | gsed 's/A\. //' | cut -d' ' -f1-4 | head -n1 | sed 's/^[A-Z]\. //' | sed 's/[A-Z][a-z]//')
+   HANDLE=$( echo $NAME | tr '[A-Z]' '[a-z]' | sed 's/ /-/g' | sed "s/$/-${n}/"| sed 's/[A-Z][a-z]//' )
+   DESCRIPTION=$( grep "$n" b.txt  -B9 | grep '[A-Z]\.' | sed 's/^[A-Z]\. //' | gsed 's/^[A-Z ]\+\([A-Z][a-z]\)/\1/' | sed 's/"//g')
    #grep 'A\.' b.txt -A2 -B2 | grep '^A.*\.$' -A2 | grep "$PN" -B2 | head -n1)
    #NAME=$(grep 'A\.' b.txt | grep 'A\. [A-Z -]\+[a-z]' -o  | sed 's/  //g'| sed 's/A\. //' | cut -d' ' -f1-4 )
    #grep 'A\.' b.txt | grep -v '[a-z]' | gsed 's/^A\. //g')
