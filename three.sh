@@ -37,7 +37,7 @@ set -o nounset                              # Treat unset variables as an error
    if [[ ! -z $n ]]
    then
 #   echo 'hey'\
-   FINAL=$(echo "\"$HANDLE\", \"$NAME\" , \"$DESCRIPTION\", \"Harley Davidson\", ")
+   FINAL=$(echo "\"$HANDLE\", \"$NAME\" , \"$DESCRIPTION\", \"Harley Davidson\", \"\" , \"Tags\", \"true\", \"Title\", \"Default Title\", , , , , \"$n\", ,")
    fi
       if [[ ! -z $FINAL ]]
    then
