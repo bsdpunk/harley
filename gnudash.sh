@@ -20,15 +20,15 @@
 set -o nounset                              # Treat unset variables as an error
 BROAD=$(grep '[A-Z]\.' c.txt -A2 -B9)
 #List of all Skus
-LIST=$(ggrep -P -o '\d{5}-\d{2}' c.txt | sort | uniq )
+LIST=$(grep -P -o '\d{5}-\d{2}' c.txt | sort | uniq )
 #Temp for checking if adjacent price
 TEMP=0
 for n in $(cat <(echo $LIST) )
 do
     #Get Name
-    NAME=$( grep "$n" c.txt -A2 -B9 |  grep '^[A-Z]\+'  | grep '^[A-Z]\+ [A-Z -]\+[a-z]' -o  | gsed 's/  //g' | gsed 's/A\. //' | cut -d' ' -f1-4 | head -n1 | sed 's/^[A-Z]\. //' | sed 's/[A-Z][a-z]//')
+    NAME=$( grep "$n" c.txt -A2 -B9 |  grep '^[A-Z]\+'  | grep '^[A-Z]\+ [A-Z -]\+[a-z]' -o  | sed 's/  //g' | sed 's/A\. //' | cut -d' ' -f1-4 | head -n1 | sed 's/^[A-Z]\. //' | sed 's/[A-Z][a-z]//')
    #Get Body
-    DESCRIPTION=$( grep "$n" c.txt  -B9 | grep '^[A-Z]\+' | sed 's/^[A-Z]\. //' | gsed 's/^[A-Z ]\+\([A-Z][a-z]\)/\1/' | sed 's/"//g')
+    DESCRIPTION=$( grep "$n" c.txt  -B9 | grep '^[A-Z]\+' | sed 's/^[A-Z]\. //' | sed 's/^[A-Z ]\+\([A-Z][a-z]\)/\1/' | sed 's/"//g')
 
     if [[  -z $NAME ]]
     then
@@ -38,16 +38,16 @@ do
     HANDLE=$( echo $NAME | tr '[A-Z]' '[a-z]' | sed 's/ /-/g' | sed "s/$/-${n}/"| sed 's/[A-Z][a-z]//' )
  
         #Get Price
-        PRICE=$(grep "$n" c.txt -A6 | ggrep -P '26800120 $\d+\.\d+' -o | ggrep -P '\d+\.\d+' -o)
-        #    PRICE=$( grep "$n" c.txt | ggrep -P -m1 -o '\$\d+\.\d+' | sed  's/\$//' )
+        PRICE=$(grep "$n" c.txt -A6 | grep -P '26800120 $\d+\.\d+' -o | grep -P '\d+\.\d+' -o)
+        #    PRICE=$( grep "$n" c.txt | grep -P -m1 -o '\$\d+\.\d+' | sed  's/\$//' )
     if [[  -z $PRICE ]]
     then
      #   if [[ "$n" -eq "$TEMP" ]]
       #  then
-       #     PRICE=$(grep "$n" c.txt -A10 | ggrep -P -o '\$\d+\.\d+' | sed 's/\$//g' | tr ' ' '\n' |tail -n1)
+       #     PRICE=$(grep "$n" c.txt -A10 | grep -P -o '\$\d+\.\d+' | sed 's/\$//g' | tr ' ' '\n' |tail -n1)
         #else
 
-            PRICE=$(grep "$n" c.txt -A6 | ggrep -P -o '\$\d+\.\d+' | sed 's/\$//g' |tr ' ' '\n' | head -n1)
+            PRICE=$(grep "$n" c.txt -A6 | grep -P -o '\$\d+\.\d+' | sed 's/\$//g' |tr ' ' '\n' | head -n1)
         #fi
     fi
         FIFTEEN=$( echo "scale=2; (${PRICE}) * .15" | bc )
