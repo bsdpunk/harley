@@ -20,15 +20,15 @@
 set -o nounset                              # Treat unset variables as an error
 BROAD=$(grep '[A-Z]\.' c.txt -A2 -B9)
 #List of all Skus
-LIST=$(grep -P -o '\d{5}-\d{2}' c.txt | sort | uniq )
+LIST=$(grep -P -o '\d{5}-\d{2}\w{0,1}' c.txt | sort | uniq )
 #Temp for checking if adjacent price
 TEMP=0
 for n in $(cat <(echo $LIST) )
 do
     #Get Name
-    NAME=$( grep "$n" c.txt -A2 -B9 |  grep '^[A-Z]\+'  | grep '^[A-Z]\+ [A-Z -]\+[a-z]' -o  | sed 's/  //g' | sed 's/A\. //' | cut -d' ' -f1-4 | head -n1 | sed 's/^[A-Z]\. //' | sed 's/[A-Z][a-z]//')
+    NAME=$( grep "$n" c.txt -A2 -B9 |  grep '^[A-Z]\+'  | grep '^[A-Z]\+ [A-Z -]\+[a-z]' -o  | sed 's/  //g' | sed 's/A\. //' | cut -d' ' -f1-4 | tail -n1 | sed 's/^[A-Z]\. //' | sed 's/[A-Z][a-z]//')
    #Get Body
-    DESCRIPTION=$( grep "$n" c.txt  -B9 | grep '^[A-Z]\+' | sed 's/^[A-Z]\. //' | sed 's/^[A-Z ]\+\([A-Z][a-z]\)/\1/' | sed 's/"//g')
+    DESCRIPTION=$( grep "$n" c.txt  -B9 | grep '^[A-Z]\.' | sed 's/^[A-Z]\. //' | sed 's/^[A-Z ]\+\([A-Z][a-z]\)/\1/' | sed 's/"//g')
 
     if [[  -z $NAME ]]
     then

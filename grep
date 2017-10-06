@@ -16,3 +16,4 @@ PN=head -n1 <(grep 'A\.' <(clear;cat xa$i | grep -A1 'A\.'))
  grep '^[0-9]\{7,\}' xaz | ggrep -P '$\d+\.\d+' | head -n1 | ggrep -o -P '[a-zA-Z]+.*'; done
 grep 'A\.' xad -A2 -B2 | grep -o '^[0-9]\{7,8\}'
 grep 26800120 b.txt -A6 | ggrep -P '26800120 $\d+\.\d+' -o | ggrep -P '\d+\.\d+' -o
+grep -P -o '\d{5}-\d{2}\w{0,1}' c.txt | sort | uniq
