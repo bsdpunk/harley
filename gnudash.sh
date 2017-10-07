@@ -32,7 +32,7 @@ do
 
     if [[  -z $NAME ]]
     then
-    NAME=$( grep $n c.txt  -B10 | grep '^[A-Z]\+' | head -n1 | sed 's/^[A-Z]\. //' | sed 's/[A-Z][a-z].*//g')
+    NAME=$( grep "$n" c.txt  -B10 | grep '^[A-Z]\+' | head -n1 | sed 's/^[A-Z]\. //' | sed 's/[A-Z][a-z].*//g')
         fi
     #Get Handle
     HANDLE=$( echo $NAME | tr '[A-Z]' '[a-z]' | sed 's/ /-/g' | sed "s/$/-${n}/"| sed 's/[A-Z][a-z]//' )
