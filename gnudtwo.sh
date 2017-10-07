@@ -26,7 +26,7 @@ TEMP=0
 for n in $(cat <(echo $LIST) )
 do
     #Get Name
-    NAME=$( grep '$n' c.txt  -B9 | grep '^[A-Z]\.' | sed 's/^[A-Z]\. //' | sed 's/^[A-Z ]\+       \([A-Z][a-z]\)/\1/' | sed 's/"//g' | grep '[A-Z ]\+' | tail -n1 | sed 's/[a-z].*//' | sed 's/.$//' )
+    NAME=$( grep "$n" c.txt  -B9 | grep '^[A-Z]\.' | sed 's/^[A-Z]\. //' | sed 's/^[A-Z ]\+       \([A-Z][a-z]\)/\1/' | sed 's/"//g' | grep '[A-Z ]\+' | tail -n1 | sed 's/[a-z].*//' | sed 's/.$//' )
     #grep "$n" c.txt -B9 |  grep '^[A-Z]\.'  | grep '^[A-Z]\+ [A-Z -]\+[a-z]' -o  | sed 's/  //g' | sed 's/A\. //' | cut -d' ' -f1-4 | tail -n1 | sed 's/^[A-Z]\. //' | sed 's/[A-Z][a-z]//')
    #Get Body
     DESCRIPTION=$( grep "$n" c.txt  -B9 | grep '^[A-Z]\.' | sed 's/^[A-Z]\. //' | sed 's/^[A-Z ]\+\([A-Z][a-z]\)/\1/' | sed 's/"//g')
