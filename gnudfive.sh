@@ -11,7 +11,7 @@
 #  REQUIREMENTS: ---
 #          BUGS: ---
 #         NOTES: ---
-#        AUTHOR: YOUR NAME (), 
+#        AUTHOR: Dusty Carver (), 
 #  ORGANIZATION: 
 #       CREATED: 10/04/17 22:02
 #      REVISION:  ---
