@@ -1,9 +1,9 @@
 #!/bin/bash - 
 #===============================================================================
 #
-#          FILE: harleytwo.sh
+#          FILE: gnudfive.sh
 # 
-#         USAGE: ./harleytwo.sh 
+#         USAGE: ./gnudfive.sh 
 # 
 #   DESCRIPTION: 
 # 
